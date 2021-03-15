@@ -1,35 +1,29 @@
 import Link from "next/link";
 import ContentfulApi from "@utils/ContentfulApi";
 
+import MainLayout from "@layouts/main";
+
 import Head from "next/head";
-import Header from "@components/Header";
-import Footer from "@components/Footer";
 
 export default function Home(props) {
   const { allProducts, preview } = props;
 
   return (
-    <div className="container">
+    <MainLayout>
       <Head>
-        <title>Next.js Starter!</title>
+        <title>Worst Buy: An example eCommerce Site backed by Contentful</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main>
-        <Header title="Welcome to Worst Buy!" />
-        <ul>
-          {allProducts.map((product) => {
-            return (
-              <li key={product.sys.id}>
-                <Link href={`/product/${product.sku}`}>{product.title}</Link>
-              </li>
-            );
-          })}
-        </ul>
-      </main>
-
-      <Footer />
-    </div>
+      <ul>
+        {allProducts.map((product) => {
+          return (
+            <li key={product.sys.id}>
+              <Link href={`/product/${product.sku}`}>{product.title}</Link>
+            </li>
+          );
+        })}
+      </ul>
+    </MainLayout>
   );
 }
 
