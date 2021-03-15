@@ -346,6 +346,9 @@ export default class ContentfulApi {
             title
             sku
             model
+            mainImage {
+              url
+            }
           }
         }
       }`;

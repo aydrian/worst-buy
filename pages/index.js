@@ -1,7 +1,8 @@
-import Link from "next/link";
 import ContentfulApi from "@utils/ContentfulApi";
 
 import MainLayout from "@layouts/main";
+
+import ProductCard from "@components/ProductCard";
 
 import Head from "next/head";
 
@@ -18,7 +19,7 @@ export default function Home(props) {
         {allProducts.map((product) => {
           return (
             <li key={product.sys.id}>
-              <Link href={`/product/${product.sku}`}>{product.title}</Link>
+              <ProductCard product={product} />
             </li>
           );
         })}
