@@ -24,8 +24,8 @@ export async function getStaticPaths() {
   // Using fallback: "blocking" here enables preview mode for unpublished blog slugs
   // on production
   return {
-    paths,
-    fallback: "blocking"
+    paths
+    //fallback: "blocking"
   };
 }
 
