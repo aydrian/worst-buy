@@ -1,8 +1,13 @@
-import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
+import Link from "next/link";
+import ContentfulApi from "@utils/ContentfulApi";
 
-export default function Home() {
+import Head from "next/head";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
+
+export default function Home(props) {
+  const { allProducts, preview } = props;
+
   return (
     <div className="container">
       <Head>
@@ -11,13 +16,30 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+        <Header title="Welcome to Worst Buy!" />
+        <ul>
+          {allProducts.map((product) => {
+            return (
+              <li key={product.sys.id}>
+                <Link href={`/product/${product.sku}`}>{product.title}</Link>
+              </li>
+            );
+          })}
+        </ul>
       </main>
 
       <Footer />
     </div>
-  )
+  );
+}
+
+export async function getStaticProps({ preview = false }) {
+  const allProducts = await ContentfulApi.getAllProducts();
+
+  return {
+    props: {
+      preview,
+      allProducts
+    }
+  };
 }
