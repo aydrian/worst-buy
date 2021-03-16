@@ -62,7 +62,10 @@ export default function ProductCard({ product }) {
           </Text>
           <Stack direction={"row"} align={"center"}>
             <Text fontWeight={800} fontSize={"xl"}>
-              $499.99
+              {new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD"
+              }).format(product.price)}
             </Text>
           </Stack>
         </Stack>

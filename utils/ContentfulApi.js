@@ -211,6 +211,7 @@ export default class ContentfulApi {
           title
           sku
           model
+          price
           releaseDate
           mainImage {
             url
@@ -297,6 +298,8 @@ export default class ContentfulApi {
             id
           }
           title
+          description
+          price
           sku
           model
           releaseDate
@@ -344,6 +347,7 @@ export default class ContentfulApi {
             }
             releaseDate
             title
+            price
             sku
             model
             mainImage {
@@ -383,6 +387,7 @@ export default class ContentfulApi {
           title
           sku
           model
+          price
         }
       }
     }`;

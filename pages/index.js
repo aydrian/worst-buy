@@ -1,10 +1,9 @@
 import ContentfulApi from "@utils/ContentfulApi";
+import Head from "next/head";
+import { Heading, HStack, Stack, VStack } from "@chakra-ui/react";
 
 import MainLayout from "@layouts/main";
-
 import ProductCard from "@components/ProductCard";
-
-import Head from "next/head";
 
 export default function Home(props) {
   const { allProducts, preview } = props;
@@ -15,15 +14,20 @@ export default function Home(props) {
         <title>Worst Buy: An example eCommerce Site backed by Contentful</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ul>
+      <VStack spacing="2" textAlign="center">
+        <Heading as="h1">Products</Heading>
+      </VStack>
+      <Stack
+        direction={{ base: "column", md: "row" }}
+        textAlign="center"
+        justify="center"
+        spacing={{ base: 4, lg: 10 }}
+        py={10}
+      >
         {allProducts.map((product) => {
-          return (
-            <li key={product.sys.id}>
-              <ProductCard product={product} />
-            </li>
-          );
+          return <ProductCard product={product} key={product.sys.id} />;
         })}
-      </ul>
+      </Stack>
     </MainLayout>
   );
 }
