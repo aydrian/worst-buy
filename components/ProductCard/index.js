@@ -1,8 +1,9 @@
-import Link from "next/link";
+import { Link as NextLink } from "next/link";
 import {
   Box,
   useColorModeValue,
   Heading,
+  Link,
   Text,
   Stack,
   Image
@@ -10,7 +11,7 @@ import {
 
 export default function ProductCard({ product }) {
   return (
-    <Link href={`/product/${product.sku}`}>
+    <Link as={NextLink} href={`/product/${product.sku}`}>
       <Box
         role={"group"}
         p={6}
