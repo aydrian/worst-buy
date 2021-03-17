@@ -51,7 +51,9 @@ export default function ProductWrapper(props) {
       <HStack>
         <VStack>
           <VStack align="start">
-            <Text fontSize="xl">{product.title}</Text>
+            <Text fontSize="xl" fontWeight="medium">
+              {product.title}
+            </Text>
             <Text fontSize="sm">
               <strong>Model: </strong>
               {product.model} <strong>SKU: </strong>
@@ -63,7 +65,7 @@ export default function ProductWrapper(props) {
           <Image src={product.mainImage.url} alt={product.title} />
         </VStack>
         <VStack>
-          <Text fontSize="xl">
+          <Text fontSize="xl" fontWeight="medium">
             {new Intl.NumberFormat("en-US", {
               style: "currency",
               currency: "USD"

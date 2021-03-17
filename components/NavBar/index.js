@@ -18,7 +18,7 @@ export default function NavBar() {
           </Link>
         </Box>
         <HStack>
-          <Text>Welcome, Aydrian</Text>
+          <Text fontWeight="light">Welcome, Aydrian</Text>
           <Avatar
             size={"sm"}
             src={
