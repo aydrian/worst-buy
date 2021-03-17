@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button, Image, HStack, Text, VStack } from "@chakra-ui/react";
 import { BellIcon } from "@chakra-ui/icons";
 import { format, parseJSON } from "date-fns";
@@ -7,25 +8,36 @@ import MainLayout from "@layouts/main";
 import Head from "next/head";
 
 export default function ProductWrapper(props) {
+  const [alerts, setAlerts] = useState([]);
   const { product } = props;
+  const alertId = `worstbuy.${product.sku}.restock`;
   const isInStock = product.itemsInStock > 0;
+  const isSubscribed = alerts.includes(alertId);
+
+  useEffect(async () => {
+    const { items } = await fetch(
+      `/api/alert?userId=AYDRIAN10036`
+    ).then((response) => response.json());
+    setAlerts(items.map((item) => item.id));
+  }, []);
 
   const onAlertMeClick = async (e) => {
-    console.log("Alert me");
+    console.log("Alert me: ", e.target.value);
     const fetchOptions = {
-      method: "POST",
+      method: isSubscribed ? "DELETE" : "POST",
       body: JSON.stringify({
         sku: product.sku,
-        userId: "73f499a5-2b1e-46e0-bfbe-4020f75a493b"
+        userId: "AYDRIAN10036"
       })
     };
 
     try {
-      const data = await fetch("/api/alert", fetchOptions).then((response) =>
-        response.json()
-      );
-
-      console.log(data);
+      await fetch("/api/alert", fetchOptions);
+      if (isSubscribed) {
+        setAlerts(alerts.filter((value) => value !== alertId));
+      } else {
+        setAlerts([...alerts, alertId]);
+      }
     } catch (error) {
       console.log("Could not subscribe to alerts: ", error);
     }
@@ -77,7 +89,7 @@ export default function ProductWrapper(props) {
                 leftIcon={<BellIcon />}
                 onClick={onAlertMeClick}
               >
-                Alert Me
+                {isSubscribed && "Don't "}Alert Me
               </Button>
             )}
           </HStack>
