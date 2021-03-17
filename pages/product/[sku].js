@@ -16,7 +16,7 @@ export default function ProductWrapper(props) {
 
   useEffect(async () => {
     const { items } = await fetch(
-      `/api/alert?userId=AYDRIAN10036`
+      `/api/alert?userId=KEANU90069`
     ).then((response) => response.json());
     setAlerts(items.map((item) => item.id));
   }, []);
@@ -27,7 +27,7 @@ export default function ProductWrapper(props) {
       method: isSubscribed ? "DELETE" : "POST",
       body: JSON.stringify({
         sku: product.sku,
-        userId: "AYDRIAN10036"
+        userId: "KEANU90069"
       })
     };
 

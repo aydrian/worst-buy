@@ -18,13 +18,8 @@ export default function NavBar() {
           </Link>
         </Box>
         <HStack>
-          <Text fontWeight="light">Welcome, Aydrian</Text>
-          <Avatar
-            size={"sm"}
-            src={
-              "https://pbs.twimg.com/profile_images/1250423206931861505/3-52t24v_400x400.jpg"
-            }
-          />
+          <Text fontWeight="light">Welcome, Keanu</Text>
+          <Avatar size={"sm"} src={"https://placekeanu.com/200/200"} />
         </HStack>
       </Flex>
     </Box>
