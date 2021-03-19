@@ -29,6 +29,7 @@ exports.handler = async function (event) {
       }
 
       // Clear the list
+      /*
       try {
         await courier.lists.putSubscriptions(listId, [
           { recipientId: "NOBODY" }
@@ -40,6 +41,7 @@ exports.handler = async function (event) {
           err
         );
       }
+      */
     }
 
     return {
